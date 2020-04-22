@@ -1,0 +1,266 @@
+@charset "utf-8";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    position: relative;
+    font-size: 62.5%;
+}
+
+body{
+    font-family:'メイリオ', 'Meiryo','ＭＳ ゴシック','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 20px;
+    background-color: #00FFFF;
+    position: fixed;
+    z-index: 2;
+}
+
+#warp{
+    width: 100%;
+    font-size: 1.6rem;
+}
+
+.pageimg{
+    width: 100%;
+    min-width: 768px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pageimg img{
+    width: 760px;
+    height: 400px;
+}
+
+.main{
+    width: 768px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#jsfile{
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #FFFF66;
+}
+
+#counting{
+    padding: 20px 0px;
+}
+
+.stage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#count p{
+    padding: 0px 20px;
+}
+
+/*ソートコンテンツ*/
+#mainfile{
+    display: block;
+}
+
+#start{
+    width: 150px;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#start div{
+    width: 100%;
+    color: #FFFFFF;
+    font-weight:  bold;
+    background: #6eb7ff;
+    border-bottom: solid 3px #3f87ce;
+    padding: 2px 0px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+#start div:hover{
+    cursor: pointer;
+    background-color: #3f87ce;
+}
+
+#start.none,#imgdata.none,.sortcontent.none{
+    display: none;
+}
+
+#mainfile img{
+    width: 100%;
+}
+
+#imgdata{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.leftfile,.rightfile{
+    width: 50%;
+    padding: 20px 0px;
+}
+
+#leftimg,#rightimg{
+    cursor: pointer;
+    width: 98%;
+    margin: 0 auto;
+    font-size: 0;
+}
+
+#leftname,#rightname,.liststyle{
+    width: 230px;
+    margin: 0 auto;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-weight:  bold;
+    background: rgb(1, 173, 216);
+    position: relative;
+    border: solid 3px rgb(126, 225, 250);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/*ソートコマンドボタン*/
+.sortcontent{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    font-weight:  bold;
+}
+
+.sortcontent li{
+    width: 210px;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin: 0px 10px;
+}
+
+#draw,#exclusion,#back{
+    padding: 2px 0px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+}
+
+#draw{
+    background: #66FF66;
+    border-bottom: solid 4px rgb(1, 211, 1);
+}
+
+#draw:hover{
+    background-color: rgb(1, 211, 1);
+}
+
+#exclusion{
+    background: #CCCCCC;
+    border-bottom: solid 4px #BBBBBB;
+}
+
+#exclusion:hover{
+    background-color: #BBBBBB;
+}
+
+#back{
+    background: #6eb7ff;
+    border-bottom: solid 4px #3f87ce;
+}
+
+#back:hover{
+    background-color: #3f87ce;
+}
+
+/*結果、説明文等*/
+.subcontents{
+    width: 760px;
+    margin: auto;
+    text-align: center;
+}
+
+/*結果出力画面*/
+.rankingdate{
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+.rankingdate h2{
+    width: 250px;
+    margin: auto;
+    font-size: 2rem;
+    color: #FFFFFF;
+    background-color: #808080;
+    border-radius: 10px;
+}
+
+#ranking{
+    padding: 10px;
+}
+
+.rankingflex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nolist{
+    padding: 5px 0px;
+    margin: 0 auto 0 0;
+}
+
+.liststyle{
+    margin: 0 0 0 auto;
+}
+
+/*遊び方説明文*/
+.palysort{
+    padding: 20px 0px;
+}
+
+#descripion-button{
+    font-weight:  bold;
+    font-size: 2.4rem;
+    border-radius: 5px;
+    background-color: #FFCCFF;
+    cursor: pointer;
+}
+
+#descripion-button:hover{
+    color: #FFFFFF;
+    background-color: #FF66FF;
+}
+
+#descripion{
+    width: 400px;
+    margin: auto;
+    padding: 20px 0px;
+    background-color: #FFFFFF;
+    display: none;
+    text-align: start;
+}
+
+.hostcomment{
+    padding: 50px 0px;
+}
+
+footer{
+    width: 100%;
+    height: 20px;
+    background-color: #00FFFF;
+    min-width: 768px;
+}
