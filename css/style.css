@@ -208,7 +208,7 @@ header{
 .rankingdate{
     width: 400px;
     margin: 0 auto;
-    padding: 20px 0px;
+    padding: 40px 0px;
 }
 
 .rankingdate h2{
@@ -221,7 +221,7 @@ header{
 }
 
 #ranking{
-    padding: 10px;
+    padding: 30px 0px;
 }
 
 .rankingflex{
