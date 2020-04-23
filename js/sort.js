@@ -151,8 +151,8 @@ $(function(){
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp2][head2];
-                head2++;
+                rec[nrec] = listMenber[cmp1][head1];
+                head1++;
                 nrec++;
                 finishSize++;
             }
