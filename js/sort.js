@@ -60,9 +60,12 @@ $(function(){
         }
 
         /*保存用の配列*/
-        var rec = new Array(charaData.length)
-        var nrec = 0;
-        rec = rec.fill(0)
+        var rec = new Array();
+        var nrec;
+        for (i=0; i<charaData.length; i++) {
+            rec[i] = 0;
+        }
+        nrec = 0;
 
         /*引き分けの結果を保存するリスト*/
         var equal = new Array();
@@ -148,8 +151,8 @@ $(function(){
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp1][head1];
-                head1++;
+                rec[nrec] = listMenber[cmp2][head2];
+                head2++;
                 nrec++;
                 finishSize++;
             }
@@ -195,8 +198,9 @@ $(function(){
             head2 = 0;
 
             if(head1==0 && head2==0){
-                rec = new Array(charaData.length)
-                rec = rec.fill(0)
+                for(let i=0; i<charaData.length; i++){
+                    rec[i] = 0;
+                }
                 nrec = 0;
             }
         }
@@ -248,12 +252,6 @@ $(function(){
         $('#rightname').text(charaData[rightCharaPath]['name']);
         numQuestion++;
     }
-
-    console.log(charaData)
-    console.log(listMenber)
-    console.log(rec)
-    console.log(equal)
-    console.log(parent)
 
     //'subcontentsの設定
     $('#descripion-button').on('click', function(){
