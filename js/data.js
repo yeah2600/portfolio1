@@ -6,7 +6,7 @@ function chara(name,img,flag,num){
 };
 
 var charas = new Array();
-charas.push(new chara("アカリ", 'img/akari.PNG', true,1));
+charas.push(new chara("アカリ", 'img/akari.PNG',true,1));
 charas.push(new chara("アキノ", 'img/akino.PNG',true,1));
 charas.push(new chara("アンナ",' img/annna.PNG',true,1));
 charas.push(new chara("アオイ",'img/aoi.PNG',true,1));

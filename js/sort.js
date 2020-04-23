@@ -1,12 +1,14 @@
 $(function(){
 
-    $('#imgdata').addClass('none');
-    $('.sortcontent').addClass('none');
-
+    $('#mainfile').addClass('none');
+    $('.rankingdate').addClass('none');
+    /*実装予定++++++++++++*/
+    $('#exclusion').addClass('none');
+    $('#back').addClass('none');
+    /*+++++++++++++++++++*/
 
     $('#start-button').on('click', function(){
-        $('#imgdata').removeClass('none');
-        $('.sortcontent').removeClass('none');
+        $('#mainfile').removeClass('none');
         $('#start').addClass('none');
     });
 
@@ -20,6 +22,7 @@ $(function(){
                 charaData.push(charas[i]);
             }
         };
+        $('#charalist').text(charaData.length)
 
         charaData.sort(function(){return Math.random()>0.5?-1:1});
         charaData.sort(function(){return Math.random()>0.5?-1:1});
@@ -29,6 +32,7 @@ $(function(){
         var totalSize;
         var parent = new Array();
 
+        /*使用するデータからソートするデータに代入*/
         listMenber = new Array();
         listMenber[n] = new Array();
         for(i=0; i<charaData.length; i++){
@@ -38,6 +42,7 @@ $(function(){
         totalSize = 0;
         n++;
 
+        /*要素数を２で割る*/
         for (i=0; i<listMenber.length; i++) {
             if(listMenber[i].length>=2) {
                 mid = Math.ceil(listMenber[i].length/2);
@@ -54,6 +59,7 @@ $(function(){
             }
         }
 
+        /*保存用の配列*/
         var rec = new Array();
         var nrec;
         for (i=0; i<charaData.length; i++) {
@@ -61,11 +67,16 @@ $(function(){
         }
         nrec = 0;
 
+        /*引き分けの結果を保存するリスト*/
         var equal = new Array();
         for (i=0; i<=charaData.length; i++) {
             equal[i] = -1;
         }
 
+        /*
+        cmp:キャラマップ
+        head:マップパス
+        */
         cmp1 = listMenber.length-2;
         cmp2 = listMenber.length-1;
         head1 = 0;
@@ -76,6 +87,7 @@ $(function(){
 
         battleImage();
 
+        /*発火リストの作成*/
         $('#leftimg').on('click', function(){
             sortlist(-1);
         });
@@ -85,14 +97,31 @@ $(function(){
         $('#draw').on('click', function(){
             sortlist(0);
         });
-        $('exclusion').on('click', function(){
+        /* sortList未定義につき、コメントアウト中（追加したい要素）
+        $('#exclusion').on('click', function(){
             sortlist(5);
         });
+        $('#back').on('click', function(){
+            sortlist(-5);
+        });
+        */
 
-
+    /*リストをソートする定義*/
+    /*flag：発火リストの結果
+        -1：左を選択
+         1：右を選択
+         0：引き分け
+    */
     function sortlist(flag){
+        /*cmpが-1になった時のエラー回避コード*/
+        switch(cmp1){
+            case 0:
+                break;
+            case -1:
+                battleResult(); 
+        }
 
-        if(flag===1){
+        if(flag==-1){
             rec[nrec] = listMenber[cmp1][head1];
             head1++;
             nrec++;
@@ -104,8 +133,7 @@ $(function(){
                 finishSize++;
             }
         }
-        //'改良点有(画像が切り替わらない)----------
-        else if(flag===-1){
+        else if(flag==1){
             rec[nrec] = listMenber[cmp2][head2];
             head2++;
             nrec++;
@@ -117,8 +145,7 @@ $(function(){
                 finishSize++;
             }
         }
-        //'ここまで----------
-        else if(flag===0){
+        else{
             rec[nrec] = listMenber[cmp1][head1];
             head1++;
             nrec++;
@@ -129,9 +156,20 @@ $(function(){
                 nrec++;
                 finishSize++;
             }
+            equal[rec[nrec-1]] = listMenber[cmp2][head2];
+            rec[nrec] = listMenber[cmp2][head2];
+            head2++;
+            nrec++;
+            finishSize++;
+            while (equal[rec[nrec-1]]!=-1) {
+                rec[nrec] = listMenber[cmp2][head2];
+                head2++;
+                nrec++;
+                finishSize++;
+            }
         }
 
-        if(head1<listMenber[cmp1].length && head2<listMenber[cmp2].length){
+        if(head1<listMenber[cmp1].length && head2==listMenber[cmp2].length){
             while(head1<listMenber[cmp1].length){
                 rec[nrec] = listMenber[cmp1][head1];
                 head1++;
@@ -174,7 +212,6 @@ $(function(){
             $('#progress').text(str2);
 
             battleResult();
-            battleImage();
             finishSize = 1;
         }
         else{
@@ -182,26 +219,39 @@ $(function(){
         }
     }
 
+    /*ソートした結果の表示*/
     function battleResult(){
-        var str = "<input type='button' onclick='initialList()' value='リスタート' />"
-        $('#reStart').text(str)
+        $('.rankingdate').removeClass('none');
+        $('#start').removeClass('none').append($('<a>').attr('href','#ranking').text("↓↓↓ 結果をチェック！ ↓↓↓"));
+        $('#imgdata').addClass('none');
+        $('.sortcontent').addClass('none');
+        $('#start-button').addClass('none');
+        
+
+        for(i=0; i<listMenber[0].length; i++){
+            var listNo = listMenber[0][i]
+            var rankFlex = $('<div>').addClass('rankingflex');
+            var noList = $('<p>').addClass('nolist').text((i+1) + '位');
+            var list = $('<p>').attr('id', 'no' + (i+1)).addClass('liststyle').text(charaData[listNo]['name']);
+
+            $('#ranking').append(rankFlex.append(noList).append(list));
+        }
     }
 
+    /*ソートするリストから画像と名前を表示*/
     function battleImage(){
-        let str0 = numQuestion-1;
-        let str1 = Math.floor(finishSize*100/totalSize)+"%";
-        let str2 = listMenber[cmp1][head1];
-        let str3 = listMenber[cmp2][head2];
-        $('#count').text(str0);
-        $('#progress').text(str1);
-        $('#leftimg img').attr('src',charaData[str2]['img']);
-        $('#rightimg img').attr('src',charaData[str3]['img']);
-        $('#leftname').text(charaData[str2]['name']);
-        $('#rightname').text(charaData[str3]['name']);
+        let count = numQuestion;
+        let progress = Math.floor(finishSize*100/totalSize)+"%";
+        let leftCharaPath = listMenber[cmp1][head1];
+        let rightCharaPath = listMenber[cmp2][head2];
+        $('#count').text(count);
+        $('#progress').text(progress);
+        $('#leftimg img').attr('src',charaData[leftCharaPath]['img']);
+        $('#rightimg img').attr('src',charaData[rightCharaPath]['img']);
+        $('#leftname').text(charaData[leftCharaPath]['name']);
+        $('#rightname').text(charaData[rightCharaPath]['name']);
+        numQuestion++;
     }
-
-    console.log(listMenber)
-
 
     //'subcontentsの設定
     $('#descripion-button').on('click', function(){

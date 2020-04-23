@@ -22,7 +22,9 @@
                             <div>ステージ</div>
                             <div id="count"></div>
                         </div>
-                        <div id="progress"></div>
+                        <div id="progress">
+                            <progress id="myProgress" value="0" max="100"></progress>
+                        </div>
                     </div>
                     <div id="start">
                         <div id="start-button">スタート</div>
@@ -49,59 +51,31 @@
                     <div class="rankingdate">
                         <h2>ソート結果</h2>
                         <div id="ranking">
-                            <div class="rankingflex">
-                                <p class="nolist">1位</p>
-                                <p id="no1" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">2位</p>
-                                <p id="no2" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">3位</p>
-                                <p id="no3" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">4位</p>
-                                <p id="no4" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">5位</p>
-                                <p id="no5" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">6位</p>
-                                <p id="no6" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">7位</p>
-                                <p id="no7" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">8位</p>
-                                <p id="no8" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">9位</p>
-                                <p id="no9" class="liststyle">test</p>
-                            </div>
-                            <div class="rankingflex">
-                                <p class="nolist">10位</p>
-                                <p id="no10" class="liststyle">test</p>
-                            </div>
-                            <div id="reStart"></div>
                         </div>
                     </div>
                     <div class="palysort">
                         <div id="descripion-button">遊び方</div>
-                        <div id="descripion">工事中</div>
-                    </div>
-                    <div class="hostcomment">
-                        <p>本サイトで使用される画像の肖像権、著作権はcygames.incに帰属します。</p>
+                        <div id="descripion">
+                            表示されるキャラクターで対決！<br>
+                            好きなキャラクターの画像をクリックすると次の対戦キャラが登場します。<br>
+                            勝敗が付かない場合は引き分けをクリック。<br>
+                            <br>
+                            キャラのソート終了後<br>
+                            『↓↓↓ 結果をチェック！ ↓↓↓』<br>
+                            を押すと、ソート結果にジャンプします。<br>
+                            <br>
+                            コラボキャラと限定キャラ(水着、晴れ着等)はソートリストに<br>
+                            反映されていませんが、今後導入予定です。<br>
+                            現在リスト内のキャラは<b id="charalist"></b>人です。
+                        </div>
                     </div>
                 </div>
             </section>
-            <footer></footer>
+            <footer>
+                <div class="hostcomment">
+                    <p>本サイトで使用される画像の肖像権、著作権はcygames.incに帰属します。</p>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
