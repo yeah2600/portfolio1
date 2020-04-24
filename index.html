@@ -7,6 +7,7 @@
         <script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
         <script type="text/javascript" src="js/sort.js"></script>
         <script type="text/javascript" src="js/data.js"></script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         <title>Document</title>
     </head>
     <body>
@@ -22,8 +23,9 @@
                             <div>ステージ</div>
                             <div id="count"></div>
                         </div>
-                        <div id="progress">
-                            <progress id="myProgress" value="0" max="100"></progress>
+                        <div class="progressfield">
+                            <progress id="progressbar" max="100" value="0"></progress>
+                            <div id="progress"></div>
                         </div>
                     </div>
                     <div id="start">
@@ -50,6 +52,7 @@
                 <div class="subcontents">
                     <div class="rankingdate">
                         <h2>ソート結果</h2>
+                        <a id="tweet-style" href="javascript:battleResult()">ツイートする</a>
                         <div id="ranking">
                         </div>
                     </div>

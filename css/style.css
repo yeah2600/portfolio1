@@ -72,6 +72,25 @@ header{
     padding: 0px 20px;
 }
 
+.progressfield{
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#progressbar{
+    width: 310px;
+    height: 15px;
+}
+
+#progress{
+    width: 50px;
+    margin: 0 auto;
+}
+
+
 /*ソートコンテンツ*/
 #mainfile{
     display: block;
@@ -214,6 +233,7 @@ header{
 .rankingdate h2{
     width: 250px;
     margin: auto;
+    margin-bottom: 10px;
     font-size: 2rem;
     color: #FFFFFF;
     background-color: #808080;
@@ -221,7 +241,7 @@ header{
 }
 
 #ranking{
-    padding: 10px;
+    padding-top: 30px;
 }
 
 .rankingflex{

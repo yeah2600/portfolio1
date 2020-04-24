@@ -60,18 +60,14 @@ $(function(){
         }
 
         /*保存用の配列*/
-        var rec = new Array();
+        var rec = new Array(charaData.length);
         var nrec;
-        for (i=0; i<charaData.length; i++) {
-            rec[i] = 0;
-        }
+        rec = rec.fill(0)
         nrec = 0;
 
         /*引き分けの結果を保存するリスト*/
-        var equal = new Array();
-        for (i=0; i<=charaData.length; i++) {
-            equal[i] = -1;
-        }
+        var equal = new Array(charaData.length);
+        equal = equal.fill(-1)
 
         /*
         cmp:キャラマップ
@@ -186,6 +182,7 @@ $(function(){
             }
         }
 
+        /**/
         if(head1==listMenber[cmp1].length && head2==listMenber[cmp2].length){
             for(let i=0; i<listMenber[cmp1].length+listMenber[cmp2].length; i++){
                 listMenber[parent[cmp1]][i] = rec[i];
@@ -198,18 +195,18 @@ $(function(){
             head2 = 0;
 
             if(head1==0 && head2==0){
-                for(let i=0; i<charaData.length; i++){
-                    rec[i] = 0;
-                }
+                rec = new Array(charaData.length);
+                rec = rec.fill(0)
                 nrec = 0;
             }
         }
         
         if(cmp1<0){
-            let str1 = numQuestion-1;
-            let str2 = Math.floor(finishSize*100/totalSize)+"%";
-            $('#count').text(str1);
-            $('#progress').text(str2);
+            let count = numQuestion-1;
+            let progress = Math.floor(finishSize*100/totalSize);
+            $('#count').text(count);
+            $('#progress').text(progress + "%");
+            $('#progressbar').attr('value',progress);
 
             battleResult();
             finishSize = 1;
@@ -228,6 +225,8 @@ $(function(){
         $('#start-button').addClass('none');
         
 
+        var tweetText = "";
+
         for(i=0; i<listMenber[0].length; i++){
             var listNo = listMenber[0][i]
             var rankFlex = $('<div>').addClass('rankingflex');
@@ -235,23 +234,36 @@ $(function(){
             var list = $('<p>').attr('id', 'no' + (i+1)).addClass('liststyle').text(charaData[listNo]['name']);
 
             $('#ranking').append(rankFlex.append(noList).append(list));
+            tweetText += ((i + 1) + "位:" + charaData[listNo]['name'] + "");
         }
+        let url = document.location.href;
+
+        $('#tweet-style').on('click', function(){
+            url = "http://twitter.com/share?url=" + escape(url) + "&text=" + tweetText + escape(url);
+            window.open(url,"_blank","width=600,height=300");
+        });
     }
 
     /*ソートするリストから画像と名前を表示*/
     function battleImage(){
         let count = numQuestion;
-        let progress = Math.floor(finishSize*100/totalSize)+"%";
+        let progress = Math.floor(finishSize*100/totalSize);
         let leftCharaPath = listMenber[cmp1][head1];
         let rightCharaPath = listMenber[cmp2][head2];
         $('#count').text(count);
-        $('#progress').text(progress);
+        $('#progress').text(progress + "%");
         $('#leftimg img').attr('src',charaData[leftCharaPath]['img']);
         $('#rightimg img').attr('src',charaData[rightCharaPath]['img']);
         $('#leftname').text(charaData[leftCharaPath]['name']);
         $('#rightname').text(charaData[rightCharaPath]['name']);
+        $('#progressbar').attr('value',progress);
         numQuestion++;
     }
+
+    console.log(equal)
+    console.log(rec)
+    console.log(listMenber)
+
 
     //'subcontentsの設定
     $('#descripion-button').on('click', function(){
