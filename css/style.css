@@ -240,6 +240,16 @@ header{
     border-radius: 10px;
 }
 
+#tweet-style{
+    padding: 1px 8px;
+    background-color: #1b95e0;
+    color: #FFFFFF;
+    font-weight:  bold;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 #ranking{
     padding-top: 30px;
 }
@@ -294,4 +304,8 @@ footer{
     background-color: #00FFFF;
     min-width: 768px;
     text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+
 }

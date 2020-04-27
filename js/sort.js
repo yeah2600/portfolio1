@@ -73,13 +73,12 @@ $(function(){
         cmp:キャラマップ
         head:マップパス
         */
-        cmp1 = listMenber.length-2;
-        cmp2 = listMenber.length-1;
+        arrayNum1 = listMenber.length-2;
+        arrayNum2 = listMenber.length-1;
         head1 = 0;
         head2 = 0;
         numQuestion = 1;
         finishSize = 0;
-        finishFlag = 0;
 
         battleImage();
 
@@ -103,94 +102,93 @@ $(function(){
         */
 
     /*リストをソートする定義*/
-    /*flag：発火リストの結果
+    /*push：発火リストの結果
         -1：左を選択
          1：右を選択
          0：引き分け
     */
-    function sortlist(flag){
+    function sortlist(push){
         /*cmpが-1になった時のエラー回避コード*/
-        switch(cmp1){
+        switch(arrayNum1){
             case 0:
                 break;
             case -1:
                 battleResult(); 
         }
 
-        if(flag==-1){
-            rec[nrec] = listMenber[cmp1][head1];
+        if(push==-1){
+            rec[nrec] = listMenber[arrayNum1][head1];
             head1++;
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp1][head1];
+                rec[nrec] = listMenber[arrayNum1][head1];
                 head1++;
                 nrec++;
                 finishSize++;
             }
         }
-        else if(flag==1){
-            rec[nrec] = listMenber[cmp2][head2];
+        else if(push==1){
+            rec[nrec] = listMenber[arrayNum2][head2];
             head2++;
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp2][head2];
+                rec[nrec] = listMenber[arrayNum2][head2];
                 head2++;
                 nrec++;
                 finishSize++;
             }
         }
         else{
-            rec[nrec] = listMenber[cmp1][head1];
+            rec[nrec] = listMenber[arrayNum1][head1];
             head1++;
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp1][head1];
+                rec[nrec] = listMenber[arrayNum1][head1];
                 head1++;
                 nrec++;
                 finishSize++;
             }
-            equal[rec[nrec-1]] = listMenber[cmp2][head2];
-            rec[nrec] = listMenber[cmp2][head2];
+            equal[rec[nrec-1]] = listMenber[arrayNum2][head2];
+            rec[nrec] = listMenber[arrayNum2][head2];
             head2++;
             nrec++;
             finishSize++;
             while (equal[rec[nrec-1]]!=-1) {
-                rec[nrec] = listMenber[cmp2][head2];
+                rec[nrec] = listMenber[arrayNum2][head2];
                 head2++;
                 nrec++;
                 finishSize++;
             }
         }
 
-        if(head1<listMenber[cmp1].length && head2==listMenber[cmp2].length){
-            while(head1<listMenber[cmp1].length){
-                rec[nrec] = listMenber[cmp1][head1];
+        if(head1<listMenber[arrayNum1].length && head2==listMenber[arrayNum2].length){
+            while(head1<listMenber[arrayNum1].length){
+                rec[nrec] = listMenber[arrayNum1][head1];
                 head1++;
                 nrec++;
                 finishSize++;
             }
         }
-        else if(head1==listMenber[cmp1].length && head2<listMenber[cmp2].length){
-            while(head2<listMenber[cmp2].length){
-                rec[nrec] = listMenber[cmp2][head2];
+        else if(head1==listMenber[arrayNum1].length && head2<listMenber[arrayNum2].length){
+            while(head2<listMenber[arrayNum2].length){
+                rec[nrec] = listMenber[arrayNum2][head2];
                 head2++;
                 nrec++;
                 finishSize++;
             }
         }
 
-        /**/
-        if(head1==listMenber[cmp1].length && head2==listMenber[cmp2].length){
-            for(let i=0; i<listMenber[cmp1].length+listMenber[cmp2].length; i++){
-                listMenber[parent[cmp1]][i] = rec[i];
+        if(head1==listMenber[arrayNum1].length && head2==listMenber[arrayNum2].length){
+            for(let i=0; i<listMenber[arrayNum1].length+listMenber[arrayNum2].length; i++){
+                listMenber[parent[arrayNum1]][i] = rec[i];
             }
             listMenber.pop();
             listMenber.pop();
-            cmp1 = cmp1-2;
-            cmp2 = cmp2-2;
+            arrayNum1 = arrayNum1-2;
+            arrayNum2 = arrayNum2-2;
             head1 = 0;
             head2 = 0;
 
@@ -201,15 +199,15 @@ $(function(){
             }
         }
         
-        if(cmp1<0){
+        if(arrayNum1<0){
             let count = numQuestion-1;
             let progress = Math.floor(finishSize*100/totalSize);
             $('#count').text(count);
             $('#progress').text(progress + "%");
             $('#progressbar').attr('value',progress);
 
-            battleResult();
             finishSize = 1;
+            battleResult();
         }
         else{
             battleImage();
@@ -223,7 +221,6 @@ $(function(){
         $('#imgdata').addClass('none');
         $('.sortcontent').addClass('none');
         $('#start-button').addClass('none');
-        
 
         var tweetText = "";
 
@@ -232,14 +229,18 @@ $(function(){
             var rankFlex = $('<div>').addClass('rankingflex');
             var noList = $('<p>').addClass('nolist').text((i+1) + '位');
             var list = $('<p>').attr('id', 'no' + (i+1)).addClass('liststyle').text(charaData[listNo]['name']);
-
             $('#ranking').append(rankFlex.append(noList).append(list));
-            tweetText += ((i + 1) + "位:" + charaData[listNo]['name'] + "");
-        }
-        let url = document.location.href;
 
+            /*ツイートエリアの設定*/
+            if(i<10){
+                tweetText += ((i + 1) + "位:" + charaData[listNo]['name']+"%0a");
+            }
+        }
+        tweetText += "%23プリコネキャラソート%0ayeah2600.github.io/portfolio1/";
+        
+        let url = document.location.href;
         $('#tweet-style').on('click', function(){
-            url = "http://twitter.com/share?url=" + escape(url) + "&text=" + tweetText + escape(url);
+            url = "http://twitter.com/share?url=" + escape(url) + "&text=" + tweetText;
             window.open(url,"_blank","width=600,height=300");
         });
     }
@@ -248,8 +249,8 @@ $(function(){
     function battleImage(){
         let count = numQuestion;
         let progress = Math.floor(finishSize*100/totalSize);
-        let leftCharaPath = listMenber[cmp1][head1];
-        let rightCharaPath = listMenber[cmp2][head2];
+        let leftCharaPath = listMenber[arrayNum1][head1];
+        let rightCharaPath = listMenber[arrayNum2][head2];
         $('#count').text(count);
         $('#progress').text(progress + "%");
         $('#leftimg img').attr('src',charaData[leftCharaPath]['img']);
@@ -260,11 +261,6 @@ $(function(){
         numQuestion++;
     }
 
-    console.log(equal)
-    console.log(rec)
-    console.log(listMenber)
-
-
     //'subcontentsの設定
     $('#descripion-button').on('click', function(){
         if ($('#descripion').is(':hidden')) {
@@ -272,6 +268,6 @@ $(function(){
         } else {
             $('#descripion').slideUp('slow');
         }
-
     });
+
 });
