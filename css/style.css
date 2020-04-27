@@ -35,18 +35,19 @@ header{
 
 .pageimg{
     width: 100%;
-    min-width: 768px;
+    min-width: 736px;
     margin: 0 auto;
     text-align: center;
 }
 
 .pageimg img{
-    width: 760px;
-    height: 400px;
+    width: 100%;
+    max-width: 736px;
+    height: 370px;
 }
 
 .main{
-    width: 768px;
+    width: 736px;
     margin: 0 auto;
     text-align: center;
 }
@@ -156,6 +157,7 @@ header{
 
 #leftname,#rightname,.liststyle{
     width: 230px;
+    font-size: none;
     margin: 0 auto;
     border-radius: 20px;
     color: #FFFFFF;
@@ -185,6 +187,7 @@ header{
 
 #draw,#exclusion,#back{
     padding: 2px 0px;
+    font-size: 2.2rem;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
     border-radius: 9px;
 }
@@ -218,7 +221,7 @@ header{
 
 /*結果、説明文等*/
 .subcontents{
-    width: 760px;
+    width: 720px;
     margin: auto;
     text-align: center;
 }
@@ -296,16 +299,92 @@ header{
 }
 
 .hostcomment{
-    padding: 10px 0px;
+    padding: 3px 0px;
 }
 
 footer{
     width: 100%;
     background-color: #00FFFF;
-    min-width: 768px;
+    min-width: 736px;
     text-align: center;
 }
 
 @media screen and (max-width: 480px) {
+    .pageimg{
+        min-width: 320px;
+    }
 
+    .pageimg img{
+        width: 100%;
+        height: 220px;
+    }
+    
+    .main{
+        width: 100%;
+        min-width: 320px;
+    }
+
+    .progressfield{
+        width: 300px;
+    }
+    
+    #progressbar{
+        width: 230px;
+    }
+
+    /*ソートコンテンツ*/
+    #start{
+        height: 240px;
+    }
+
+    #imgdata{
+        height: 200px;
+    }
+    
+    #leftname,#rightname,.liststyle{
+        width: 90%;
+        font-size: 1.6rem;
+    }
+
+    .liststyle{
+        width: 200px;
+    }
+    
+    /*ソートコマンドボタン*/
+    .sortcontent{
+        height: 40px;
+
+    }
+
+    .sortcontent li{
+        width: 160px;
+    }
+    
+    #draw,#exclusion,#back{
+        font-size: 1.6rem;
+    }
+
+    /*結果、説明文等*/
+    .subcontents{
+        width: 98%;
+    }
+    
+    /*結果出力画面*/
+    .rankingdate{
+        width: 80%;
+    }
+
+    .nolist{
+        padding: 5px 0px;
+        margin: 0 auto;
+    }
+
+    /*遊び方説明文*/
+    #descripion{
+        width: 95%;
+    }
+
+    footer{
+        min-width: 320px;
+    }
 }

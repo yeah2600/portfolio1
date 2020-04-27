@@ -66,8 +66,8 @@ $(function(){
         nrec = 0;
 
         /*引き分けの結果を保存するリスト*/
-        var equal = new Array(charaData.length);
-        equal = equal.fill(-1)
+        var draw = new Array(charaData.length);
+        draw = draw.fill(-1)
 
         /*
         cmp:キャラマップ
@@ -84,20 +84,20 @@ $(function(){
 
         /*発火リストの作成*/
         $('#leftimg').on('click', function(){
-            sortlist(-1);
+            sortList(-1);
         });
         $('#rightimg').on('click', function(){
-            sortlist(1);
+            sortList(1);
         });
         $('#draw').on('click', function(){
-            sortlist(0);
+            sortList(0);
         });
         /* sortList未定義につき、コメントアウト中（追加したい要素）
         $('#exclusion').on('click', function(){
-            sortlist(5);
+            sortList(5);
         });
         $('#back').on('click', function(){
-            sortlist(-5);
+            sortList(-5);
         });
         */
 
@@ -107,7 +107,7 @@ $(function(){
          1：右を選択
          0：引き分け
     */
-    function sortlist(push){
+    function sortList(push){
         /*cmpが-1になった時のエラー回避コード*/
         switch(arrayNum1){
             case 0:
@@ -121,7 +121,7 @@ $(function(){
             head1++;
             nrec++;
             finishSize++;
-            while (equal[rec[nrec-1]]!=-1) {
+            while (draw[rec[nrec-1]]!=-1) {
                 rec[nrec] = listMenber[arrayNum1][head1];
                 head1++;
                 nrec++;
@@ -133,7 +133,7 @@ $(function(){
             head2++;
             nrec++;
             finishSize++;
-            while (equal[rec[nrec-1]]!=-1) {
+            while (draw[rec[nrec-1]]!=-1) {
                 rec[nrec] = listMenber[arrayNum2][head2];
                 head2++;
                 nrec++;
@@ -145,18 +145,18 @@ $(function(){
             head1++;
             nrec++;
             finishSize++;
-            while (equal[rec[nrec-1]]!=-1) {
+            while (draw[rec[nrec-1]]!=-1) {
                 rec[nrec] = listMenber[arrayNum1][head1];
                 head1++;
                 nrec++;
                 finishSize++;
             }
-            equal[rec[nrec-1]] = listMenber[arrayNum2][head2];
+            draw[rec[nrec-1]] = listMenber[arrayNum2][head2];
             rec[nrec] = listMenber[arrayNum2][head2];
             head2++;
             nrec++;
             finishSize++;
-            while (equal[rec[nrec-1]]!=-1) {
+            while (draw[rec[nrec-1]]!=-1) {
                 rec[nrec] = listMenber[arrayNum2][head2];
                 head2++;
                 nrec++;
@@ -217,7 +217,7 @@ $(function(){
     /*ソートした結果の表示*/
     function battleResult(){
         $('.rankingdate').removeClass('none');
-        $('#start').removeClass('none').append($('<a>').attr('href','#ranking').text("↓↓↓ 結果をチェック！ ↓↓↓"));
+        $('#start').removeClass('none').append($('<a>').attr('href','#ranking').text("結果をチェック！"));
         $('#imgdata').addClass('none');
         $('.sortcontent').addClass('none');
         $('#start-button').addClass('none');
@@ -236,7 +236,7 @@ $(function(){
                 tweetText += ((i + 1) + "位:" + charaData[listNo]['name']+"%0a");
             }
         }
-        tweetText += "%23プリコネキャラソート%0ayeah2600.github.io/portfolio1/";
+        tweetText = "あなたのプリコネキャラソートTOP10！%0a"+tweetText+"%23プリコネキャラソート%0a";
         
         let url = document.location.href;
         $('#tweet-style').on('click', function(){
