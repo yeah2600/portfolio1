@@ -253,12 +253,32 @@ $(function(){
         let rightCharaPath = listMenber[arrayNum2][head2];
         $('#count').text(count);
         $('#progress').text(progress + "%");
+        $('#progressbar').attr('value',progress);
+        
+        /*フェードイン設定,
+        　画像が同じ場合は切り替わらないように分岐,
+        　前回のデータが保存されるようにrecNumにて保存*/
+        let fadeSpeed = 700;
+        let recNum1 = 0;
+        let recNum2 = 0;
+        if(head1==recNum1 && head2!==recNum2){
+            $('.rightfile').hide().fadeIn(fadeSpeed);
+        }
+        else if(head1!==recNum1 && head2==recNum2){
+            $('.leftfile').hide().fadeIn(fadeSpeed);
+        }
+        else{
+            $('.leftfile').hide().fadeIn(fadeSpeed) && $('.rightfile').hide().fadeIn(fadeSpeed);
+        }
+
         $('#leftimg img').attr('src',charaData[leftCharaPath]['img']);
         $('#rightimg img').attr('src',charaData[rightCharaPath]['img']);
         $('#leftname').text(charaData[leftCharaPath]['name']);
         $('#rightname').text(charaData[rightCharaPath]['name']);
-        $('#progressbar').attr('value',progress);
         numQuestion++;
+
+        recNum1 = head1;
+        recNum2 = head2;
     }
 
     //'subcontentsの設定
